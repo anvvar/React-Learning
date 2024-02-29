@@ -2,6 +2,7 @@ import { useState } from "react";
 import Content from "./Content";
 import Header from "./Header";
 import Footer from "./Footer";
+import AddItem from "./AddItem";
 function App() {
   const [items, setItems] = useState([
     {
@@ -32,9 +33,16 @@ function App() {
     setItems(listItems);
     localStorage.setItem("shoppinglist", JSON.stringify(listItems));
   };
+  
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log('Submitted')
+  }
+
   return (
     <div className="App">
       <Header title="Grocery List" />
+      <AddItem/>
       <Content
         items={items}
         handleCheck={handleCheck}
