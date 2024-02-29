@@ -1,3 +1,4 @@
+import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 const AddItem = () => {
   return (
@@ -6,7 +7,7 @@ const AddItem = () => {
 
     <input 
     autoFocus
-    id='addItem'
+    id='assItem'
     type="text" 
     placeholder='Add Items'
     required

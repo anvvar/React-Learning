@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Content from "./Content";
 import Header from "./Header";
+import AddItem from "./AddItem";
 import Footer from "./Footer";
 import AddItem from "./AddItem";
 function App() {
