@@ -1,14 +1,15 @@
 import { useState } from "react";
 import Content from "./Content";
 import Header from "./Header";
-import AddItem from "./AddItem";
 import Footer from "./Footer";
-import AddItem from "./AddItem";
+import AddItems from "./AddItems";
+import SearchItem from "./SearchItem";
 function App() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('shoppinglist')));
 
   const[newItem,setNewItem]=useState('')
 
+  const [search,setSearch]=useState('')
   const setAndSaveITem =(newItems)=>{
     setItems(newItems);
     localStorage.setItem("shoppinglist", JSON.stringify(newItems));
@@ -33,24 +34,30 @@ function App() {
     setAndSaveITem(listItems);
   };
   
-  const handleSubmit=(e)=>{
-    e.preventDefault();
-    if(!newItem)return;
-   addItem(newItem)
+  const handleSubmit=(event)=>{
+    event.preventDefault();
+    if (!newItem) return;
+    addItem(newItem);
    setNewItem('')
 
   };
+  
 
   return (
     <div className="App">
       <Header title="Grocery List" />
-      <AddItem
-      newItem={ newItem }
-      setNewItem={setNewItem}
-      handleSubmit={handleSubmit}
-      />
-      <Content
-        items={items}
+     
+       <AddItems
+       newItem={newItem}
+       setNewItem={setNewItem}
+       handelSubmit={handleSubmit}
+       />
+        <SearchItem
+      search={search}
+      setSearch={setSearch}      />
+       <Content
+        items={items.filter(item =>((item.item).toLowerCase()).includes
+          (search.toLowerCase()))}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
       />
